@@ -15,7 +15,20 @@ exports.signup = async (req, res) => {
       username: req.body.username,
       email: req.body.email,
       password: bcrypt.hashSync(req.body.password, 8),
+      dob: req.body.dob,
+      gender: req.body.gender,
+      last_login: Date.now(),
+      is_superuser: req.body.is_superuser || false,
+      first_name: req.body.first_name || "",
+      last_name: req.body.last_name || "",
+      date_joined: Date.now(),
+      is_active: true,
+      phone: req.body.phone || null,
+      address: req.body.address || "",
+      deleted: false,
+      is_verified: false,
     });
+  
 
     if (req.body.roles) {
       const roles = await Role.findAll({
@@ -25,12 +38,11 @@ exports.signup = async (req, res) => {
           },
         },
       });
-
-      const result = user.setRoles(roles);
-      if (result) res.send({ message: "User registered successfully!" });
+      
+      const result = user.setRoles(roles.name);
+      if (result) res.send({ message: "User registered successfully!" }); 
     } else {
-      // user has role = 1
-      const result = user.setRoles([1]);
+      const result = user.setRoles("user");
       if (result) res.send({ message: "User registered successfully!" });
     }
   } catch (error) {
@@ -82,6 +94,7 @@ exports.signin = async (req, res) => {
       username: user.username,
       email: user.email,
       roles: authorities,
+      token: token, // Include the token in the response
     });
   } catch (error) {
     return res.status(500).send({ message: error.message });

@@ -17,9 +17,9 @@
     "authorization",
     "mysql"
   ],
-  "author": "bezkoder",
-  "license": "ISC",
+  "author": "Raj",
   "dependencies": {
+    "aws-sdk": "^2.1518.0",
     "bcryptjs": "^2.4.3",
     "cookie-session": "^2.0.0",
     "cors": "^2.8.5",
@@ -27,6 +27,7 @@
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
     "mysql2": "^2.3.3",
+    "otp-generator": "^4.0.1",
     "pg": "^8.11.3",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.31.1"

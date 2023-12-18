@@ -29,6 +29,18 @@ checkDuplicateUsernameOrEmail = async (req, res, next) => {
         message: "Failed! Email is already in use!"
       });
     }
+    // Mobile
+    user = await User.findOne({
+      where: {
+        phone: req.body.phone
+      }
+    });
+
+    if (user) {
+      return res.status(400).send({
+        message: "Failed! Phone number is already in use!"
+      });
+    }
 
     next();
   } catch (error) {
