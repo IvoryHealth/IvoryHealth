@@ -48,10 +48,10 @@ const getPackages = async(req,res) => {
 const getAllPackages = async(req,res) => {
 
     const package = await Package.findAll({
-        attributes: ['name','medical_center_id'],
-        group: ['name','medical_center_id'],
+        attributes: ['name','medical_center_id','background_image'],
+        group: ['name','medical_center_id','background_image'],
     }).then(package => {
-        const distinctData = package.map(item => ({ medical_center_id: item.medical_center_id, name: item.name }));
+        const distinctData = package.map(item => ({ medical_center_id: item.medical_center_id, name: item.name, url : item.background_image }));
         res.status(200).send(distinctData)
     });
 }
