@@ -50,6 +50,10 @@ db.tests.belongsToMany(db.packages, {
   through: "package_details"
 });
 
+db.subTests.belongsToMany(db.tests, {
+  through: "test_details"
+});
+
 db.tests.belongsToMany(db.subTests, {
   through: "test_details"
 });

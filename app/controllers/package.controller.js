@@ -51,8 +51,8 @@ const getAllPackages = async(req,res) => {
         attributes: ['name','medical_center_id','background_image'],
         group: ['name','medical_center_id','background_image'],
     }).then(package => {
-        const distinctData = package.map(item => ({ medical_center_id: item.medical_center_id, name: item.name, url : item.background_image }));
-        res.status(200).send(distinctData)
+        const distinctData = package.map(item => ({ medical_center_id: item.medical_center_id, name: item.name, background_image : item.background_image }));
+        res.status(200).send(distinctData) 
     });
 }
 
@@ -76,5 +76,5 @@ module.exports = {
     addPackage,
     getPackages,
     getAllPackages,
-    getPackageDetails
+    getPackageDetails,
 }

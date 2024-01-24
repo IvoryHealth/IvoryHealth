@@ -17,5 +17,7 @@ module.exports = function(app) {
     app.get("/api/package/getAll", controller.getAllPackages);
 
     app.get("/api/package/getPackageDetails/:id?", controller.getPackageDetails);
+
+    //app.get("/api/test/getTestDetails/:id?", controller.getTestDetails);
     
   };
